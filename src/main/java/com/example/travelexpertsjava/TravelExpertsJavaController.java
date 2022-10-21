@@ -6,6 +6,11 @@ package com.example.travelexpertsjava;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -27,13 +32,15 @@ public class TravelExpertsJavaController {
     private Button btnEdit; // Value injected by FXMLLoader
 
     @FXML // fx:id="cboSelect"
-    private ComboBox<?> cboSelect; // Value injected by FXMLLoader
+    private ComboBox<Table> cboSelect; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvTable"
     private TableView<?> tvTable; // Value injected by FXMLLoader
 
     @FXML // fx:id="welcomeText"
     private Label welcomeText; // Value injected by FXMLLoader
+
+    private ObservableList<Table> editableTables = FXCollections.observableArrayList();
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -42,6 +49,17 @@ public class TravelExpertsJavaController {
         assert cboSelect != null : "fx:id=\"cboSelect\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert tvTable != null : "fx:id=\"tvTable\" was not injected: check your FXML file 'hello-view.fxml'.";
         assert welcomeText != null : "fx:id=\"welcomeText\" was not injected: check your FXML file 'hello-view.fxml'.";
+
+        cboSelect.setItems(editableTables);
+//        editableTables.add(new Table("Customers", "customers"));
+//        editableTables.add(new Table("Agents", "agents"));
+
+        cboSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
+            @Override
+            public void changed(ObservableValue<?> observableValue, Object o, Object t1) {
+
+            }
+        });
 
     }
 
