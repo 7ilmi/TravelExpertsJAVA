@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-public class AgentDAO {
+public class AgentDAO extends AbstractDAO<Agent>{
 
-    public static ObservableList<Agent> getAll() {
+    @Override
+    public ObservableList<Agent> getAll() {
         ObservableList<Agent> agents = FXCollections.observableArrayList();
         try{
             Connection conn = DBConn.getConnection();
@@ -30,7 +31,8 @@ public class AgentDAO {
         }
     }
 
-    public static void update(Agent agt) {
+    @Override
+    public void update(Agent agt) {
         try{
             Connection conn = DBConn.getConnection();
             Statement stmt = conn.createStatement();
@@ -49,7 +51,6 @@ public class AgentDAO {
             updateAgent.setInt(9, agt.getAgentId());
 
             int rs = updateAgent.executeUpdate();
-            System.out.println(rs);
             conn.close();
         }
         catch (Exception e){
@@ -57,7 +58,8 @@ public class AgentDAO {
         }
     }
 
-    public static void add(Agent agt) {
+    @Override
+    public void add(Agent agt) {
         try{
             Connection conn = DBConn.getConnection();
             Statement stmt = conn.createStatement();
@@ -83,7 +85,8 @@ public class AgentDAO {
         }
     }
 
-    public static void delete(Agent agt) {
+    @Override
+    public void delete(Agent agt) {
         try{
             Connection conn = DBConn.getConnection();
             Statement stmt = conn.createStatement();

@@ -11,10 +11,11 @@ import java.util.ArrayList;
 
 abstract class Table {
     protected final String displayName;
-    public final  ArrayList<String> columnNames;
+    protected final  ArrayList<String> columnNames;
+    protected final AbstractDAO<?> dao;
 
-    public Table(String displayName) {
-
+    public Table(String displayName, AbstractDAO<?> dao) {
+        this.dao = dao;
         this.displayName = displayName;
         columnNames = new ArrayList<String>();
     }

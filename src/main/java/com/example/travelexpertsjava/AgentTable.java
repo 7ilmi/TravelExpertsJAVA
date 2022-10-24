@@ -5,7 +5,7 @@ import javafx.collections.ObservableList;
 
 public class AgentTable extends Table{
     public AgentTable() {
-        super("Agents");
+        super("Agents", new AgentDAO());
         this.columnNames.add("ID");
         this.columnNames.add("First Name");
         this.columnNames.add("Middle Initial");
@@ -18,7 +18,7 @@ public class AgentTable extends Table{
 
     @Override
     public void setTableData(ObservableList<ObservableList<?>> data) {
-        ObservableList<Agent> agents = AgentDAO.getAll();
+        ObservableList<Agent> agents = (ObservableList<Agent>) this.dao.getAll();
         data.clear();
         for(Agent a : agents){
             ObservableList<String> row = FXCollections.observableArrayList();
