@@ -35,12 +35,13 @@ public class TravelExpertsJavaController {
     private ComboBox<Table> cboSelect; // Value injected by FXMLLoader
 
     @FXML // fx:id="tvTable"
-    private TableView<?> tvTable; // Value injected by FXMLLoader
+    private TableView<ObservableList<?>> tvTable; // Value injected by FXMLLoader
 
     @FXML // fx:id="welcomeText"
     private Label welcomeText; // Value injected by FXMLLoader
 
-    private ObservableList<Table> editableTables = FXCollections.observableArrayList();
+    private final ObservableList<Table> editableTables = FXCollections.observableArrayList();
+    private ObservableList<ObservableList<?>> tableData = FXCollections.observableArrayList();
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -51,8 +52,12 @@ public class TravelExpertsJavaController {
         assert welcomeText != null : "fx:id=\"welcomeText\" was not injected: check your FXML file 'hello-view.fxml'.";
 
         cboSelect.setItems(editableTables);
-//        editableTables.add(new Table("Customers", "customers"));
-//        editableTables.add(new Table("Agents", "agents"));
+        editableTables.add(new AgentTable());
+
+        editableTables.get(0).setTable(tvTable, tableData);
+        tvTable.setItems(tableData);
+        System.out.println(tableData);
+
 
         cboSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
             @Override
