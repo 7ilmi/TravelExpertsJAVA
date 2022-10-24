@@ -22,7 +22,7 @@ public class AgentTable extends Table{
         data.clear();
         for(Agent a : agents){
             ObservableList<String> row = FXCollections.observableArrayList();
-            row.add(a.getAgentId()+"A");
+            row.add(a.getAgentId()+"");
             row.add(a.getAgtFirstName()+"");
             row.add(a.getAgtMiddleInitial()+"");
             row.add(a.getAgtLastName()+"");

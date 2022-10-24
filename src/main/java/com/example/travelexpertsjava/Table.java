@@ -41,11 +41,10 @@ abstract class Table {
     public abstract void setTableData(ObservableList<ObservableList<?>> data);
 
     public void setTable(TableView<ObservableList<?>> tv, ObservableList<ObservableList<?>> data){
-        //data.clear();
+        data.clear();
         tv.getItems().clear();
         this.setTableColumns(tv);
         this.setTableData(data);
-        tv.setItems(data);
     }
 
     @Override

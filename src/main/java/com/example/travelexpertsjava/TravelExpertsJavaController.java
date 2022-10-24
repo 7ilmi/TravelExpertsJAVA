@@ -53,16 +53,13 @@ public class TravelExpertsJavaController {
 
         cboSelect.setItems(editableTables);
         editableTables.add(new AgentTable());
-
-        editableTables.get(0).setTable(tvTable, tableData);
-        tvTable.setItems(tableData);
-        System.out.println(tableData);
-
+        editableTables.add(new CustomerTable());
 
         cboSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observableValue, Object o, Object t1) {
-
+                ((Table) t1).setTable(tvTable, tableData);
+                tvTable.setItems(tableData);
             }
         });
 
