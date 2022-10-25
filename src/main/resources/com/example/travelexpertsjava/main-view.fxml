@@ -17,7 +17,9 @@
    <ComboBox fx:id="cboSelect" prefHeight="25.0" prefWidth="254.0" />
    <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
       <children>
+         <Button fx:id="btnAdd" mnemonicParsing="false" text="Add" />
          <Button fx:id="btnEdit" mnemonicParsing="false" text="Edit" />
+         <Button fx:id="btnDelete" mnemonicParsing="false" text="Delete" />
          <Button fx:id="btnCancel" mnemonicParsing="false" text="Cancel" />
       </children>
    </HBox>

@@ -1,5 +1,5 @@
 /**
- * Sample Skeleton for 'hello-view.fxml' Controller Class
+ * Sample Skeleton for 'main-view.fxml' Controller Class
  */
 
 package com.example.travelexpertsjava;
@@ -25,11 +25,20 @@ public class TravelExpertsJavaController {
     @FXML // URL location of the FXML file that was given to the FXMLLoader
     private URL location;
 
+    @FXML // fx:id="btnAdd"
+    private Button btnAdd; // Value injected by FXMLLoader
+
     @FXML // fx:id="btnCancel"
     private Button btnCancel; // Value injected by FXMLLoader
 
+    @FXML // fx:id="btnDelete"
+    private Button btnDelete; // Value injected by FXMLLoader
+
     @FXML // fx:id="btnEdit"
     private Button btnEdit; // Value injected by FXMLLoader
+
+    @FXML // fx:id="welcomeText"
+    private Label welcomeText; // Value injected by FXMLLoader
 
     @FXML // fx:id="cboSelect"
     private ComboBox<Table> cboSelect; // Value injected by FXMLLoader
@@ -37,19 +46,19 @@ public class TravelExpertsJavaController {
     @FXML // fx:id="tvTable"
     private TableView<ObservableList<?>> tvTable; // Value injected by FXMLLoader
 
-    @FXML // fx:id="welcomeText"
-    private Label welcomeText; // Value injected by FXMLLoader
-
     private final ObservableList<Table> editableTables = FXCollections.observableArrayList();
     private ObservableList<ObservableList<?>> tableData = FXCollections.observableArrayList();
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'hello-view.fxml'.";
-        assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'hello-view.fxml'.";
-        assert cboSelect != null : "fx:id=\"cboSelect\" was not injected: check your FXML file 'hello-view.fxml'.";
-        assert tvTable != null : "fx:id=\"tvTable\" was not injected: check your FXML file 'hello-view.fxml'.";
-        assert welcomeText != null : "fx:id=\"welcomeText\" was not injected: check your FXML file 'hello-view.fxml'.";
+        assert btnAdd != null : "fx:id=\"btnAdd\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert btnCancel != null : "fx:id=\"btnCancel\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert btnDelete != null : "fx:id=\"btnDelete\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert cboSelect != null : "fx:id=\"cboSelect\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert tvTable != null : "fx:id=\"tvTable\" was not injected: check your FXML file 'main-view.fxml'.";
+        assert welcomeText != null : "fx:id=\"welcomeText\" was not injected: check your FXML file 'main-view.fxml'.";
+
 
         cboSelect.setItems(editableTables);
         editableTables.add(new AgentTable());
