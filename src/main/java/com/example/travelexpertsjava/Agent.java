@@ -2,6 +2,7 @@ package com.example.travelexpertsjava;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 
 public class Agent {
     //attributes
@@ -22,6 +23,22 @@ public class Agent {
         this.agtEmail = new SimpleStringProperty(agtEmail);
         this.agtPosition = new SimpleStringProperty(agtPosition);
     }
+
+    public Agent(){
+        this.agentId = new SimpleIntegerProperty();
+        this.agencyId = new SimpleIntegerProperty();
+        this.agtFirstName = new SimpleStringProperty();
+        this.agtMiddleInitial = new SimpleStringProperty();
+        this.agtLastName = new SimpleStringProperty();
+        this.agtBusPhone = new SimpleStringProperty();
+        this.agtEmail = new SimpleStringProperty();
+        this.agtPosition = new SimpleStringProperty();
+    }
+
+    public Agent(ObservableList<String> ol){
+        this(Integer.parseInt(ol.get(0)), ol.get(1), ol.get(2), ol.get(3), ol.get(4), ol.get(5), ol.get(6), Integer.parseInt(ol.get(7)));
+    }
+
 
     //to string override
     @Override

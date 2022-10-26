@@ -11,7 +11,7 @@ public class TravelExpertsJavaApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TravelExpertsJavaApplication.class.getResource("main-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 400, 400);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Travel Experts Java Prototype");
         stage.setScene(scene);
         stage.show();

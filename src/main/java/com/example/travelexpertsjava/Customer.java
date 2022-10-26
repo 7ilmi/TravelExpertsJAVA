@@ -2,6 +2,7 @@ package com.example.travelexpertsjava;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
 
 public class Customer {
     private SimpleIntegerProperty customerId, agentId;
@@ -16,13 +17,33 @@ public class Customer {
         this.custFirstName = new SimpleStringProperty(custFirstName);
         this.custLastName = new SimpleStringProperty(custLastName);
         this.custAddress = new SimpleStringProperty(custAddress);
-        this.custCity = new SimpleStringProperty(custAddress);
+        this.custCity = new SimpleStringProperty(custCity);
         this.custProv = new SimpleStringProperty(custProv);
         this.custPostal = new SimpleStringProperty(custPostal);
         this.custCountry = new SimpleStringProperty(custCountry);
         this.custHomePhone = new SimpleStringProperty(custHomePhone);
         this.custBusPhone = new SimpleStringProperty(custBusPhone);
         this.custEmail = new SimpleStringProperty(custEmail);
+    }
+
+    public Customer(){
+        this.customerId = new SimpleIntegerProperty();
+        this.agentId = new SimpleIntegerProperty();
+        this.custFirstName = new SimpleStringProperty();
+        this.custLastName = new SimpleStringProperty();
+        this.custAddress = new SimpleStringProperty();
+        this.custCity = new SimpleStringProperty();
+        this.custProv = new SimpleStringProperty();
+        this.custPostal = new SimpleStringProperty();
+        this.custCountry = new SimpleStringProperty();
+        this.custHomePhone = new SimpleStringProperty();
+        this.custBusPhone = new SimpleStringProperty();
+        this.custEmail = new SimpleStringProperty();
+    }
+
+    public Customer(ObservableList<String> ol){
+        this(Integer.parseInt(ol.get(0)), ol.get(1), ol.get(2), ol.get(3), ol.get(4), ol.get(5), ol.get(6),
+                ol.get(7), ol.get(8), ol.get(9), ol.get(10), Integer.parseInt(ol.get(11)));
     }
 
     @Override

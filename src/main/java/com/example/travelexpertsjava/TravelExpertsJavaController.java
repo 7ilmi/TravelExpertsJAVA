@@ -11,11 +11,16 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class TravelExpertsJavaController {
 
@@ -67,11 +72,82 @@ public class TravelExpertsJavaController {
         cboSelect.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Object>() {
             @Override
             public void changed(ObservableValue<?> observableValue, Object o, Object t1) {
-                ((Table) t1).setTable(tvTable, tableData);
-                tvTable.setItems(tableData);
+                updateTableView();
             }
         });
 
+        btnAdd.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Table<?> selectedTable = cboSelect.getValue();
+                if(selectedTable != null) {
+                    Node node = (Node) actionEvent.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    try{
+                        selectedTable.add(stage);
+                    }
+                    catch (Exception e){
+                        System.out.println(e.toString());
+                    }
+                }
+            }
+        });
+
+        btnEdit.setOnAction(new EventHandler<ActionEvent>() {
+            @Override @FXML
+            public void handle(ActionEvent actionEvent) {
+                Table<?> selectedTable = cboSelect.getValue();
+                ObservableList<String> selectedRow = (ObservableList<String>) tvTable.getSelectionModel().getSelectedItem();
+                if(selectedTable != null && selectedRow != null) {
+                    Node node = (Node) actionEvent.getSource();
+                    Stage stage = (Stage) node.getScene().getWindow();
+                    stage.close();
+                    try{
+                        selectedTable.edit(Integer.parseInt(selectedRow.get(0)), stage);
+                    }
+                    catch (Exception e){
+                        System.out.println(e.toString());
+                    }
+                }
+            }
+        });
+
+        btnDelete.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Table<?> selectedTable = cboSelect.getValue();
+                ObservableList<String> selectedRow = (ObservableList<String>) tvTable.getSelectionModel().getSelectedItem();
+                if(selectedTable != null && selectedRow != null) {
+                    selectedTable.delete(Integer.parseInt(selectedRow.get(0)));
+                    updateTableView();
+                }
+            }
+        });
+
+        btnCancel.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                ((Stage) btnCancel.getScene().getWindow()).close();
+            }
+        });
+
+        cboSelect.getSelectionModel().select(editableTables.get(0));
     }
 
+    public void updateTableView(){
+        Table<?> selectedTable = cboSelect.getValue();
+        if(selectedTable != null){
+            selectedTable.setTable(tvTable, tableData);
+            tvTable.setItems(tableData);
+        }
+    }
+
+    public void selectTable(Class<?> tableClass){
+        for(Table<?> tb : editableTables){
+            if(tb.getClass() == tableClass){
+                cboSelect.getSelectionModel().select(tb);
+            }
+        }
+    }
 }

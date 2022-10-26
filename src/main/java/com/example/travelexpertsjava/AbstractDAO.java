@@ -9,5 +9,5 @@ public abstract class AbstractDAO<O> {
 
     public abstract void add(O object);
 
-    public abstract void delete(O object);
+    public abstract void delete(int index);
 }

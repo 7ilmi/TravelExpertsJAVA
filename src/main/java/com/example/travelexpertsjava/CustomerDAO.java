@@ -96,14 +96,14 @@ public class CustomerDAO extends AbstractDAO<Customer>{
     }
 
     @Override
-    public void delete(Customer cust) {
+    public void delete(int index) {
         try{
             Connection conn = DBConn.getConnection();
             Statement stmt = conn.createStatement();
 
             String query = "delete from Customers where CustomerId = ? ";
             PreparedStatement deleteCustomer = conn.prepareStatement(query);
-            deleteCustomer.setInt(1, cust.getCustomerId());
+            deleteCustomer.setInt(1, index);
 
             int rs = deleteCustomer.executeUpdate();
             conn.close();

@@ -5,13 +5,15 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-abstract class Table {
+abstract class Table<O> {
     protected final String displayName;
-    protected final  ArrayList<String> columnNames;
+    protected final ArrayList<String> columnNames;
     protected final AbstractDAO<?> dao;
 
     public Table(String displayName, AbstractDAO<?> dao) {
@@ -38,14 +40,20 @@ abstract class Table {
         }
     }
 
-    public abstract void setTableData(ObservableList<ObservableList<?>> data);
-
     public void setTable(TableView<ObservableList<?>> tv, ObservableList<ObservableList<?>> data){
         data.clear();
         tv.getItems().clear();
         this.setTableColumns(tv);
         this.setTableData(data);
     }
+
+    public abstract void setTableData(ObservableList<ObservableList<?>> data);
+
+    public abstract void add(Stage stage) throws IOException;
+
+    public abstract void edit(int id, Stage stage) throws IOException;
+
+    public abstract void delete(int index);
 
     @Override
     public final String toString() {

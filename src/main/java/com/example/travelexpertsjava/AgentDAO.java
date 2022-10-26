@@ -86,14 +86,14 @@ public class AgentDAO extends AbstractDAO<Agent>{
     }
 
     @Override
-    public void delete(Agent agt) {
+    public void delete(int index) {
         try{
             Connection conn = DBConn.getConnection();
             Statement stmt = conn.createStatement();
 
             String query = "delete from Agents where AgentId = ? ";
             PreparedStatement deleteAgent = conn.prepareStatement(query);
-            deleteAgent.setInt(1, agt.getAgentId());
+            deleteAgent.setInt(1, index);
 
             int rs = deleteAgent.executeUpdate();
             System.out.println(rs);
